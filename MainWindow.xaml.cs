@@ -20,7 +20,8 @@ namespace u5GameOfLIfe
     /// </summary>
     public partial class MainWindow : Window
     {
-        int i = 1;
+        int i = 0;
+        int counter = 0;
         double[,] myCells;
         string temp;
         Rectangle[,] myRectangles;
@@ -89,29 +90,33 @@ namespace u5GameOfLIfe
 
         private void drawCell()
         {
-            if (x_cord + y_cord <= 40)
-            {
-                myRectangles[x_cord, y_cord].Fill = Brushes.Red;
+           
+                if (x_cord + y_cord <= 40)
+                {
+                    myRectangles[cordList[i], cordList[i + 1]].Fill = Brushes.Red;
+                    
+                }
+                else
+                {
+                    MessageBox.Show("This cordinate is too big! Try something smaller than the Coordinates: 21,21");
+                }
             }
-            else
-            {
-                MessageBox.Show("This cordinate is too big! Try something smaller than the Coordinates: 21,21");
-            }
-        }
+        
 
         private void extractCords()
         {
             string InputCoordinates = txtInput.Text;
            
             
-                int.TryParse(InputCoordinates.Substring(0, InputCoordinates.IndexOf(",")), out this.x_cord);
+                int.TryParse(InputCoordinates.Substring(0, InputCoordinates.IndexOf(",")), out x_cord);
                 //MessageBox.Show(x_cord.ToString());
                 InputCoordinates = InputCoordinates.Substring(InputCoordinates.IndexOf(",") + 1);
-                int.TryParse(InputCoordinates.Substring(0, InputCoordinates.Length), out this.y_cord);
+                int.TryParse(InputCoordinates.Substring(0, InputCoordinates.Length), out y_cord);
                 cordList[i] = x_cord;
                 cordList[i + 1] = y_cord;
+                MessageBox.Show("x_cord: " + cordList[i] + "y_cord: " + cordList[i + 1] + "i int: " + i.ToString());
                 i += 2;
-            MessageBox.Show("x_cord: "+ cordList[i]+ "y_cord: " + cordList[i + 1]+"i int: "+  i.ToString());
+                
                 //MessageBox.Show(y_cord.ToString());
                 
 
